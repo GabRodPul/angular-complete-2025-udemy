@@ -1,6 +1,7 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from "./new-task/new-task.component";
+import { NewTask } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -48,5 +49,18 @@ export class TasksComponent {
 
   newTaskDialogue(b: boolean) {
     this.isAdding = b;
+  }
+
+  onAddTask(task: NewTask) {
+    this.tasks.set([
+      {
+        id: new Date().getTime().toString(),
+        userId: this.userId()!,
+        ...task
+      },
+      ...this.tasks()
+    ]);
+
+    this.isAdding = false;
   }
 }
