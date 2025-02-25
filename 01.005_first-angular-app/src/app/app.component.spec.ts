@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the '1.5-first-angular-app' title`, () => {
+  it(`should have the '01.005_first-angular-app' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('1.5-first-angular-app');
+    expect(app.title).toEqual('01.005_first-angular-app');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, 1.5-first-angular-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, 01.005_first-angular-app');
   });
 });
