@@ -9,7 +9,7 @@
   <ul>
     @for (t of selectedUserTasks(); track t.id) {
     <li>
-      <app-task />
+      <app-task [task]="t"/>
     </li>
     }
   </ul>
