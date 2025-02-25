@@ -9,7 +9,7 @@
   <ul>
     @for (t of selectedUserTasks(); track t.id) {
     <li>
-      <app-task [task]="t"/>
+      <app-task [task]="t" (complete)="onCompleteTask($event)"/>
     </li>
     }
   </ul>
