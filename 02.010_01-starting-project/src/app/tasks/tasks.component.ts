@@ -1,16 +1,18 @@
 import { Component, computed, input, signal } from '@angular/core';
-import { TaskComponent } from "../task/task.component";
+import { TaskComponent } from "./task/task.component";
+import { NewTaskComponent } from "./new-task/new-task.component";
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent],
+  imports: [TaskComponent, NewTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
   userId = input<string>();
   name = input<string>();
+  isAdding = false;
   tasks = signal(
     [
       {
@@ -42,5 +44,9 @@ export class TasksComponent {
   selectedUserTasks = computed(() => this.tasks().filter((t) => t.userId === this.userId()));
   onCompleteTask(id: string) {
     this.tasks.set(this.tasks().filter((t) => t.id !== id));
+  }
+
+  onStartAddTask() {
+    this.isAdding = true;
   }
 }
