@@ -9,7 +9,10 @@ import { Component, computed, Input, input } from '@angular/core';
 export class UserComponent {
   @Input({ required: true }) avatar!: string;
   @Input({ required: true }) name!: string;
-  imagePath = computed(() => `assets/users/${this.avatar}`);
+
+  get imagePath() {
+    return `assets/users/${this.avatar}`;
+  }
 
   onSelectUser() {}
 }
