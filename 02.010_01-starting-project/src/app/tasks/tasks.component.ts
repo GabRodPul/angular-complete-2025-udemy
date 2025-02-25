@@ -46,7 +46,7 @@ export class TasksComponent {
     this.tasks.set(this.tasks().filter((t) => t.id !== id));
   }
 
-  onStartAddTask() {
-    this.isAdding = true;
+  newTaskDialogue(b: boolean) {
+    this.isAdding = b;
   }
 }

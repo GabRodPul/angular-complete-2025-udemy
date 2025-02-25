@@ -1,12 +1,12 @@
 @if (isAdding) {
-  <app-new-task />
+  <app-new-task (cancel)="newTaskDialogue(false)"/>
 }
 
 <section id="tasks">
   <header>
     <h2>{{ name() }}'s Tasks</h2>
     <menu>
-      <button (click)="onStartAddTask()">Add Task</button>
+      <button (click)="newTaskDialogue(true)">Add Task</button>
     </menu>
   </header>
 
