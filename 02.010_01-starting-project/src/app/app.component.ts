@@ -12,7 +12,6 @@ import { NgFor, NgIf } from '@angular/common';
     HeaderComponent,
     UserComponent,
     TasksComponent,
-    NgFor, NgIf
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
