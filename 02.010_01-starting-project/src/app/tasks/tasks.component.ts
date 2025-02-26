@@ -12,24 +12,18 @@ import { TasksService } from './tasks.service';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-  userId = input<string>();
-  name = input<string>();
-  isAdding = false;
+  userId    = input<string>();
+  name      = input<string>();
+  isAdding  = false;
 
   constructor(private tasks: TasksService) {}
   
   selectedUserTasks = computed(() => this.tasks.getUserTasks(this.userId()!));
   onCompleteTask(id: string) {
-    
+    this.isAdding = false;
   }
 
   newTaskDialogue(b: boolean) {
     this.isAdding = b;
-  }
-
-  onAddTask(task: NewTask) {
-    
-
-    this.isAdding = false;
   }
 }
