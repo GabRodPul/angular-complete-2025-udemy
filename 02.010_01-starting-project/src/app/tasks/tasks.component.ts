@@ -19,9 +19,6 @@ export class TasksComponent {
   constructor(private tasks: TasksService) {}
   
   selectedUserTasks = computed(() => this.tasks.getUserTasks(this.userId()!));
-  onCompleteTask(id: string) {
-    this.isAdding = false;
-  }
 
   newTaskDialogue(b: boolean) {
     this.isAdding = b;
