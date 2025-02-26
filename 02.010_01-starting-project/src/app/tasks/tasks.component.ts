@@ -2,6 +2,7 @@ import { Component, computed, input, signal } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from "./new-task/new-task.component";
 import { NewTask } from './task/task.model';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -14,37 +15,12 @@ export class TasksComponent {
   userId = input<string>();
   name = input<string>();
   isAdding = false;
-  tasks = signal(
-    [
-      {
-        id: 't1',
-        userId: 'u1',
-        title: 'Master Angular',
-        summary:
-          'Learn all the basic and advanced features of Angular & how to apply them.',
-        dueDate: '2025-12-31',
-      },
-      {
-        id: 't2',
-        userId: 'u3',
-        title: 'Build first prototype',
-        summary: 'Build a first prototype of the online shop website',
-        dueDate: '2024-05-31',
-      },
-      {
-        id: 't3',
-        userId: 'u3',
-        title: 'Prepare issue template',
-        summary:
-          'Prepare and describe an issue template which will help with project management',
-        dueDate: '2024-06-15',
-      },
-    ]
-  )
 
-  selectedUserTasks = computed(() => this.tasks().filter((t) => t.userId === this.userId()));
+  constructor(private tasks: TasksService) {}
+  
+  selectedUserTasks = computed(() => this.tasks.getUserTasks(this.userId()!));
   onCompleteTask(id: string) {
-    this.tasks.set(this.tasks().filter((t) => t.id !== id));
+    
   }
 
   newTaskDialogue(b: boolean) {
@@ -52,14 +28,7 @@ export class TasksComponent {
   }
 
   onAddTask(task: NewTask) {
-    this.tasks.set([
-      {
-        id: new Date().getTime().toString(),
-        userId: this.userId()!,
-        ...task
-      },
-      ...this.tasks()
-    ]);
+    
 
     this.isAdding = false;
   }
