@@ -7,3 +7,11 @@ Required course for my internship at Asociación para la Cultura Furry Española
 - ### Section 2: Angular Essentials - Components, Templates, Services & More (47/55)
 #### Today's summary
 Project setup, components, signals, how to store data for components, @for & @if/else/else if Angular template blocks, directives, two-way binding, and more.
+## 26-02-2025
+- ### Section 2: Angular Essentials - Components, Templates, Services & More (55/55) [8 left from 25-02]
+- ### Section 3: Section 3: Angular Essentials - Working with Modules (9/9)
+- ### Section 4: Angular Essentials - Time To Practice (17/17)
+- ### Section 5: Debugging Angular Apps (4/4)
+- ### Section 6: Components & Templates - Deep Dive (16/53)
+#### Today's summary
+Content projection, pipes, services & dependency injection, NgModules, practice of the previous concepts, debugging, when to use components, splitting existing ones & creating reusable components, property binding, selectors, extending built-in elements and adding fallbacks, CSS component scoping.
