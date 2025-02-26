@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { InvestmentInput, InvestmentResult } from '../investment.model';
+import { InvestmentResult } from '../investment.model';
 import { CurrencyPipe } from '@angular/common';
 
 @Component({
