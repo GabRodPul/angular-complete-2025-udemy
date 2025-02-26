@@ -1,7 +1,9 @@
-<article>
-  <header>
-    <img src="status.png" alt="A signal symbol" />
-    <h2>Server Status</h2>
-  </header>
-  <ng-content />
-</article>
+<div class="dashboard-item">
+  <article>
+    <header>
+      <img [src]="img().src" [alt]="img().alt" />
+      <h2>{{ title() }}</h2>
+    </header>
+    <ng-content />
+  </article>
+</div>
