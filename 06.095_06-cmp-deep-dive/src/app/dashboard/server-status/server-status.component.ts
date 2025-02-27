@@ -24,4 +24,8 @@ export class ServerStatusComponent
       }
     }, 5000);
   }
+
+  ngAfterViewInit() {
+    console.log("AFTER VIEW INIT");
+  }
 }
