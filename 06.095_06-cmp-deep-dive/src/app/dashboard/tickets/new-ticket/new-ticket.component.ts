@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, viewChild, viewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, output, ViewChild, viewChild, viewChildren } from '@angular/core';
 import { ControlComponent } from "../../../shared/control/control.component";
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { FormsModule } from '@angular/forms';
+import { NewTicket } from '../ticket.model';
 
 @Component({
   selector: 'app-new-ticket',
@@ -16,6 +17,7 @@ export class NewTicketComponent implements
   // @ViewChild("form") private form: ElementRef<HTMLFormElement>;
   private form    = viewChild.required<ElementRef<HTMLFormElement>>("form");
   // private buttons = viewChildren<ButtonComponent>(ButtonComponent);
+  add = output<NewTicket>();
 
   ngOnInit(): void {
     console.log("ONINIT");
@@ -27,9 +29,8 @@ export class NewTicketComponent implements
     console.log(this.form().nativeElement);
   }
 
-  onSubmit(title: string, ticketText: string) {
-    console.dir(title);
-    console.dir(ticketText);
+  onSubmit(title: string, request: string) {
+    this.add.emit({ title, request })
     this.form().nativeElement.reset();
   }
 }
