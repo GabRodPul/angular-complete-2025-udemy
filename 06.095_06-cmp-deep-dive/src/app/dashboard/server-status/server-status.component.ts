@@ -15,8 +15,7 @@ export class ServerStatusComponent implements
   
   constructor() {
     // Otherwise this won't setup
-    // Effects need to be disposed
-    effect(() => {
+    effect((onCleanup) => {
       console.log(this.currentStatus());
     });
   }
