@@ -17,6 +17,8 @@ export class NewTicketComponent implements
   // @ViewChild("form") private form: ElementRef<HTMLFormElement>;
   private form    = viewChild.required<ElementRef<HTMLFormElement>>("form");
   // private buttons = viewChildren<ButtonComponent>(ButtonComponent);
+  fTitle  = "";
+  fText   = "";
   add = output<NewTicket>();
 
   ngOnInit(): void {
@@ -29,8 +31,13 @@ export class NewTicketComponent implements
     console.log(this.form().nativeElement);
   }
 
-  onSubmit(title: string, request: string) {
-    this.add.emit({ title, request })
-    this.form().nativeElement.reset();
+  onSubmit() {
+    this.add.emit({ 
+      title  : this.fTitle, 
+      request: this.fText,
+    });
+    // this.form().nativeElement.reset();
+    this.fTitle = "";
+    this.fText  = "";
   }
 }
