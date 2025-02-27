@@ -15,3 +15,9 @@ Project setup, components, signals, how to store data for components, @for & @if
 - ### Section 6: Components & Templates - Deep Dive (16/53)
 #### Today's summary
 Content projection, pipes, services & dependency injection, NgModules, practice of the previous concepts, debugging, when to use components, splitting existing ones & creating reusable components, property binding, selectors, extending built-in elements and adding fallbacks, CSS component scoping.
+
+## 27-02-2025
+- ### Section 6: Components & Templates - Deep Dive (53/53) [37 left from 26-02]
+- ### Section 7: Section 7: Enhancing Elements with Directives - Deep Dive (13/13)
+#### Today's summary
+Host elements, listeners and binders. Dynamic styles. Component lifecycles. Template variables. ViewChild & ContentChild. Two-way binding. All about directives. Stayed 30 minutes more to compensate for when I prepared breakfast this morning.
