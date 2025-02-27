@@ -9,8 +9,8 @@ import { Ticket } from '../ticket.model';
   styleUrl: './ticket.component.css'
 })
 export class TicketComponent {
-  data = input.required<Ticket>();
-  close = output();
+  data        = input.required<Ticket>();
+  close       = output();
   showDetails = signal(false);
 
   onToggleDetails() {
