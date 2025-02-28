@@ -27,6 +27,9 @@ export class TemperaturePipe implements PipeTransform {
       case inp === "f" && out === "c": {
         temp = (val - 32) * (5 / 9);
       } break;
+
+      default:
+        temp = val;
     }
 
     const letter = out ? out : inp;
