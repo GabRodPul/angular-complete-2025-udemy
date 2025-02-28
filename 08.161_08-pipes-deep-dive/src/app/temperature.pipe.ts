@@ -5,7 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true
 })
 export class TemperaturePipe implements PipeTransform {
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return value + " - transformed";
+  transform(value: string | number, ...args: unknown[]): unknown {
+    let val = typeof value === "string"
+            ? parseFloat(value)
+            : value;
+
+    val = val * (9 / 5) + 32;
+
+    return `${val} ºF`;
   }
 }
