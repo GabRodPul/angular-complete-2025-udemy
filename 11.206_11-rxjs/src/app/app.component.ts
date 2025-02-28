@@ -1,5 +1,5 @@
 import { Component, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { interval, map } from 'rxjs';
 
 @Component({
@@ -11,6 +11,8 @@ export class AppComponent implements OnInit {
   private destroy = inject(DestroyRef);
   count = signal(0);
   count$ = toObservable(this.count);
+  interval$ = interval(1000);
+  intervalSig = toSignal(this.interval$, { initialValue: 0, manualCleanup: false });
 
   constructor() {
     // effect(() => {
