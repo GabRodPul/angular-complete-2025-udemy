@@ -44,12 +44,14 @@ export class PlacesService {
 
   removeUserPlace(placeId: string) {
     const ogPlaces = this.userPlaces();
-    this.userPlaces.update(prev => prev.filter((p) => p.id != placeId))
+    if (!ogPlaces.some((p) => p.id == placeId))
+      this.userPlaces.update(prev => prev.filter((p) => p.id !== placeId))
 
     return this.httpClient
       .delete("http://localhost:3000/user-places/" + placeId)
       .pipe(catchError(err => {
         this.userPlaces.set(ogPlaces);
+        this.errorSrv.showError("FAILED TO REMOVE");
         return throwError(() => new Error("FAILED TO STORE"));
       }))
   }
