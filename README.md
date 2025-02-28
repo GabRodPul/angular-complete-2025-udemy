@@ -21,3 +21,12 @@ Content projection, pipes, services & dependency injection, NgModules, practice 
 - ### Section 7: Section 7: Enhancing Elements with Directives - Deep Dive (13/13)
 #### Today's summary
 Host elements, listeners and binders. Dynamic styles. Component lifecycles. Template variables. ViewChild & ContentChild. Two-way binding. All about directives. Stayed 30 minutes more to compensate for when I prepared breakfast this morning.
+
+## 28-02-2025
+- ### Section 8: Transforming Values with Pipes - Deep Dive [12/12]
+- ### Section 9: Understanding Services & Dependency Injection - Deep Dive [18/18]
+- ### Section 10: Making Sense of Change Detection - Deep Dive [14/14]
+- ### Section 11: Working with RxJS (Observables) - Deep Dive [10/10]
+- ### Section 12: Sending HTTP Requests & Handling Responses [23/23, but for some reason the pages displays 217 as "Not completed"]
+#### Today's summary
+Deep dives for pipes, dependency injection, change detection, observables and HTTP requests.
