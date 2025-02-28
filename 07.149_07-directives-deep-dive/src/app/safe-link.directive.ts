@@ -1,8 +1,10 @@
 import { Directive, ElementRef, HostListener, inject, input } from '@angular/core';
+import { LogDirective } from './log.directive';
 
 @Directive({
   selector: 'a[appSafeLink]',
-  standalone: true
+  standalone: true,
+  hostDirectives: [LogDirective]
 })
 export class SafeLinkDirective {
   paramFrom = input("myapp", { alias: "appSafeLink" });
