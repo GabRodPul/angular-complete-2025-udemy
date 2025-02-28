@@ -8,11 +8,10 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './messages-list.component.html',
   styleUrl: './messages-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe],
 })
 export class MessagesListComponent {
   private _messages = inject(MessagesService);
-  messages$ = this._messages.messages$;
+  messages = this._messages.allMessages;
 
   get debugOutput() {
     console.log('[MessagesList] "debugOutput" binding re-evaluated.');

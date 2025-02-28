@@ -11,7 +11,6 @@ import { InfoMessageComponent } from '../info-message/info-message.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CounterComponent {
-  private zone = inject(NgZone);
   count = signal(0);
 
   get debugOutput() {
@@ -22,13 +21,11 @@ export class CounterComponent {
   ngOnInit() {
     setTimeout(() => {
       this.count.set(0);
-    },)
+    }, 4000)
 
-    this.zone.runOutsideAngular(() => {
-      setTimeout(() => {
-        console.log("Timer expired!");
-      }, 5000);
-    })
+    setTimeout(() => {
+      console.log("Timer expired!");
+    }, 5000);
   }
 
   onDecrement() {
