@@ -15,6 +15,7 @@ import { map } from 'rxjs';
 })
 export class AvailablePlacesComponent implements OnInit {
   places = signal<Place[] | undefined>(undefined);
+  fetching = signal(true);
   private httpClient = inject(HttpClient);
   private destroy = inject(DestroyRef);
 
@@ -27,6 +28,9 @@ export class AvailablePlacesComponent implements OnInit {
       .subscribe({
         next: (places) => {
           this.places.set(places);
+        },
+        complete: () => {
+          this.fetching.set(false);
         }
       });
 
