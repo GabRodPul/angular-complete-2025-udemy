@@ -17,15 +17,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  //  const sub = interval(1000).pipe(
-  //   map((n) => n * 2)
-  //  ).subscribe({
-  //   next: (n) => console.log(n)
-  //  });
+   const sub = interval(1000).pipe(
+    map((n) => n * 2)
+   ).subscribe({
+    next: (n) => console.log(n)
+   });
 
-  //  this.destroy.onDestroy(() => {
-  //   sub.unsubscribe();
-  //  })
+   this.destroy.onDestroy(() => {
+    sub.unsubscribe();
+   })
  }
 
  onClick() {
