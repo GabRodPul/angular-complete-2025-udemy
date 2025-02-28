@@ -8,9 +8,9 @@
       </div>
     </header>
     <p>New York:  {{ currentTemperaturs.newYork | temp:"f":"c" }}</p>
-    <p>Berlin:    {{ currentTemperaturs.berlin  | number:'1.1-2' }}</p>
-    <p>Paris:     {{ currentTemperaturs.paris   | number:'1.1-2' }}</p>
-    <p>Chicago:   {{ currentTemperaturs.chicago | number:'1.1-2' }}</p>
+    <p>Berlin:    {{ currentTemperaturs.berlin  | temp:"f":"c" }}</p>
+    <p>Paris:     {{ currentTemperaturs.paris   | temp:"f":"c" }}</p>
+    <p>Chicago:   {{ currentTemperaturs.chicago | temp:"f":"c" }}</p>
   </article>
 
   <article class="temperatures">

@@ -7,7 +7,13 @@ type Temps = "c" | "f"
   standalone: true
 })
 export class TemperaturePipe implements PipeTransform {
-  transform(value: string | number, inp: Temps, out?: Temps): unknown {
+  transform(
+    value: string | number | null, 
+    inp:   Temps, 
+    out?:  Temps
+  ): string | null {
+    if (value === null) return value;
+
     const val = typeof value === "string"
             ? parseFloat(value)
             : value;
@@ -25,6 +31,6 @@ export class TemperaturePipe implements PipeTransform {
 
     const letter = out ? out : inp;
 
-    return `${temp} º${letter.toUpperCase()}`;
+    return `${temp!.toFixed(2)} º${letter.toUpperCase()}`;
   }
 }
