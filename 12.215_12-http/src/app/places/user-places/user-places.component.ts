@@ -15,19 +15,16 @@ import { PlacesService } from '../places.service';
   imports: [PlacesContainerComponent, PlacesComponent],
 })
 export class UserPlacesComponent {
-  places = signal<Place[] | undefined>(undefined);
   fetching = signal(true);
   error = signal("");
   private placesSrv = inject(PlacesService);
   private destroy = inject(DestroyRef);
+  places = this.placesSrv.loadedUserPlaces;
 
   ngOnInit() {
     const sub = this.placesSrv
       .loadUserPlaces()
       .subscribe({
-        next: (p) => {
-          this.places.set(p);
-        },
         error: (err: Error) => {
           this.error.set(err.message);
         },
