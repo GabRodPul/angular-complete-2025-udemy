@@ -3,11 +3,13 @@ import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { Place } from './place.model';
 import { catchError, map, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ErrorService } from '../shared/error.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlacesService {
+  private errorSrv   = inject(ErrorService);
   private userPlaces = signal<Place[]>([]);
   private httpClient = inject(HttpClient);
 
@@ -25,16 +27,31 @@ export class PlacesService {
   }
 
   addPlaceToUserPlaces(place: Place) {
-    this.userPlaces.update(prev => [...prev, place])
+    const ogPlaces = this.userPlaces();
+    if (!ogPlaces.some((p) => p.id == place.id))
+      this.userPlaces.update(prev => [...prev, place]);
+
+
+
     return this.httpClient.put("http://localhost:3000/user-places", { 
       placeId: place.id
     })
+    .pipe(catchError(err => {
+      this.userPlaces.set(ogPlaces);
+      return throwError(() => new Error("FAILED TO STORE"));
+    }))
   }
 
   removeUserPlace(placeId: string) {
+    const ogPlaces = this.userPlaces();
     this.userPlaces.update(prev => prev.filter((p) => p.id != placeId))
+
     return this.httpClient
       .delete("http://localhost:3000/user-places/" + placeId)
+      .pipe(catchError(err => {
+        this.userPlaces.set(ogPlaces);
+        return throwError(() => new Error("FAILED TO STORE"));
+      }))
   }
 
   private fetchPlaces(url: string, errMsg: string) {
