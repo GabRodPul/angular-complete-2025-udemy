@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 import { PlacesComponent } from '../places.component';
+import { Place } from '../place.model';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, throwError } from 'rxjs';
+import { PlacesService } from '../places.service';
 
 @Component({
   selector: 'app-user-places',
@@ -11,4 +15,41 @@ import { PlacesComponent } from '../places.component';
   imports: [PlacesContainerComponent, PlacesComponent],
 })
 export class UserPlacesComponent {
+  places = signal<Place[] | undefined>(undefined);
+  fetching = signal(true);
+  error = signal("");
+  private placesSrv = inject(PlacesService);
+  private destroy = inject(DestroyRef);
+
+  ngOnInit() {
+    const sub = this.placesSrv
+      .loadUserPlaces()
+      .subscribe({
+        next: (p) => {
+          this.places.set(p);
+        },
+        error: (err: Error) => {
+          this.error.set(err.message);
+        },
+        complete: () => {
+          this.fetching.set(false);
+        }
+      });
+
+    this.destroy.onDestroy(() => {
+      sub.unsubscribe();
+    })
+  }
+
+  onSelectPlace(place: Place) {
+    const sub = this.placesSrv
+      .removeUserPlace(place.id)
+      .subscribe({
+        next: (res) => console.log(res)
+    });
+
+    this.destroy.onDestroy(() => {
+      sub.unsubscribe();
+    })
+  }
 }
