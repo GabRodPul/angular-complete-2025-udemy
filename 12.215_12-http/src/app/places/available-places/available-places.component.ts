@@ -4,7 +4,7 @@ import { Place } from '../place.model';
 import { PlacesComponent } from '../places.component';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-available-places',
@@ -16,6 +16,7 @@ import { map } from 'rxjs';
 export class AvailablePlacesComponent implements OnInit {
   places = signal<Place[] | undefined>(undefined);
   fetching = signal(true);
+  error = signal("");
   private httpClient = inject(HttpClient);
   private destroy = inject(DestroyRef);
 
@@ -23,11 +24,15 @@ export class AvailablePlacesComponent implements OnInit {
     const sub = this.httpClient
       .get<{ places: Place[] }>("http://localhost:3000/places")
       .pipe(
-        map((res) => res.places)
+        map((res) => res.places),
+        catchError((err) => throwError(() => new Error("Something went wrong fetching data!")))
       )
       .subscribe({
         next: (places) => {
           this.places.set(places);
+        },
+        error: (err: Error) => {
+          this.error.set(err.message);
         },
         complete: () => {
           this.fetching.set(false);
