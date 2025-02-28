@@ -7,7 +7,7 @@ import { Task } from './task.model';
 export class TasksService {
   tasks = signal<Task[]>([]);
 
-  addTask(task: Omit<Task, "id" | "status">) {
+  add(task: Omit<Task, "id" | "status">) {
     this.tasks.update((old) => [ ...old, {
       ...task,
       id: Math.random().toString(),
