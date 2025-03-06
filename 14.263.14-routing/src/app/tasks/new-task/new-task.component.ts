@@ -2,6 +2,7 @@ import { Component, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TasksService } from '../tasks.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-task',
@@ -15,10 +16,11 @@ export class NewTaskComponent {
   enteredTitle = signal('');
   enteredSummary = signal('');
   enteredDate = signal('');
-  private tasksService = inject(TasksService);
+  private tasks  = inject(TasksService);
+  private router = inject(Router);
 
   onSubmit() {
-    this.tasksService.addTask(
+    this.tasks.addTask(
       {
         title: this.enteredTitle(),
         summary: this.enteredSummary(),
@@ -26,5 +28,9 @@ export class NewTaskComponent {
       },
       this.userId()
     );
+
+    this.router.navigate(["/users", this.userId(), "tasks"], {
+      replaceUrl: true
+    });
   }
 }
