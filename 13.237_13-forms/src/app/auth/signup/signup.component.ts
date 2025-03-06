@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+type Role = "student"
+          | "teacher"
+          | "employee"
+          | "founder"
+          | "other"
+
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -22,6 +28,18 @@ export class SignupComponent {
         Validators.minLength(6),
       ],
     }),
+    rePassword: new FormControl("", {
+      validators: [
+        Validators.required,
+        Validators.minLength(6),
+      ],
+    }),
+    firstName:  new FormControl("", { validators: [ Validators.required ] }),
+    lastName:   new FormControl("", { validators: [ Validators.required ] }),
+    street:     new FormControl("", { validators: [ Validators.required ] }),
+    postalCode: new FormControl<Role>("student", { validators: [ Validators.required ] }),
+    city:     new FormControl("", { validators: [ Validators.required ] }),
+    role:       new FormControl(false, { validators: [ Validators.required ] }),
   });
 
   onSubmit() {
