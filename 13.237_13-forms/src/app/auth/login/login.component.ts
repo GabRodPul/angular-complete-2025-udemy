@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,11 @@ export class LoginComponent {
         (ctrl: AbstractControl) => ctrl.value.includes("?")
           ? null
           : { noQuestionMark: true }
+      ],
+      asyncValidators: [=
+        (ctrl: AbstractControl) => ctrl.value !== "test@example.com"
+          ? of(null)
+          : of({ notUnique: true })
       ]
     }),
   });
