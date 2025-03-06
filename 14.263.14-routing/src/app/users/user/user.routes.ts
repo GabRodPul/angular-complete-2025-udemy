@@ -8,6 +8,10 @@ export const userRoutes: Routes = [
     redirectTo: "tasks",
     pathMatch: "prefix"
   },
-  { path: "tasks",     component: TasksComponent },
+  { 
+    path: "tasks",     
+    component: TasksComponent,
+    runGuardsAndResolvers: "paramsOrQueryParamsChange"
+  },
   { path: "tasks/new", component: NewTaskComponent },
 ];
