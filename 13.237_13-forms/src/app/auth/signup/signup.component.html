@@ -7,14 +7,14 @@
     <input id="email" type="email" name="email" formControlName="email"/>
   </div>
 
-  <div class="control-row">
-    <div class="control">
+  <div class="control-row" formGroupName="passwords" >
+    <div class="control" >
       <label for="password">Password</label>
       <input
         id="password"
         type="password"
         name="password"
-        formControlName="password"
+        formControlName="pwd"
       />
     </div>
 
@@ -24,7 +24,7 @@
         id="confirm-password"
         type="password"
         name="confirm-password"
-        formControlName="rePassword"
+        formControlName="confirmPwd"
       />
     </div>
   </div>
@@ -39,7 +39,7 @@
           type="text"
           id="first-name"
           name="first-name"
-          formControlName="fistName"
+          formControlName="firstName"
         />
       </div>
 
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <fieldset>
+    <fieldset formGroupName="address">
       <legend>Your Address</legend>
 
       <div class="control-row">
