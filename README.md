@@ -30,3 +30,9 @@ Host elements, listeners and binders. Dynamic styles. Component lifecycles. Temp
 - ### Section 12: Sending HTTP Requests & Handling Responses [23/23, but for some reason the pages displays 217 as "Not completed"]
 #### Today's summary
 Deep dives for pipes, dependency injection, change detection, observables and HTTP requests.
+
+## 06-03-2025
+- ### Section 13: Section 13: Handling User Input & Working with Forms (Template-driven & Reactive) [25/25]
+- ### Section 14: Section 14: Routing & Building Multi-page Single Page Applications [35/35]
+#### Today's summary
+Template forms & reactive forms, all about routing.
