@@ -6,12 +6,22 @@ import { NewTaskComponent } from "./tasks/new-task/new-task.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 
 export const routes: Routes = [
-  { path: "",      component: NoTaskComponent },
+  { 
+    path: "",
+    // component: NoTaskComponent,
+    redirectTo: "/users/u1",
+    pathMatch: "full",
+  },
   { 
     path: "users/:userId", 
     component: UserTasksComponent,
     children: [
-      { path: "tasks", component: TasksComponent },
+      { 
+        path: "", 
+        redirectTo: "tasks",
+        pathMatch: "prefix"
+      },
+      { path: "tasks",     component: TasksComponent },
       { path: "tasks/new", component: NewTaskComponent },
     ]
   },
