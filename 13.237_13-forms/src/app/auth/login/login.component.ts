@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +20,9 @@ export class LoginComponent {
       validators: [
         Validators.required,
         Validators.minLength(6),
+        (ctrl: AbstractControl) => ctrl.value.includes("?")
+          ? null
+          : { noQuestionMark: true }
       ]
     }),
   });
