@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { of } from 'rxjs';
+import { debounceTime, of } from 'rxjs';
+
+const initVals = { email: "" }
+const ls = window.localStorage.getItem("saved-login-form");
+if (ls) {
+  initVals.email = JSON.parse(ls).email;
+}
 
 @Component({
   selector: 'app-login',
@@ -9,9 +15,9 @@ import { of } from 'rxjs';
 ,  templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   form = new FormGroup({
-    email:    new FormControl("", {
+    email:    new FormControl(initVals.email, {
       validators: [
         Validators.required,
         Validators.email,
@@ -25,13 +31,25 @@ export class LoginComponent {
           ? null
           : { noQuestionMark: true }
       ],
-      asyncValidators: [=
+      asyncValidators: [
         (ctrl: AbstractControl) => ctrl.value !== "test@example.com"
           ? of(null)
           : of({ notUnique: true })
       ]
     }),
   });
+
+  private destroy = inject(DestroyRef);
+
+  ngOnInit(): void {
+    const sub = this.form.valueChanges.pipe(debounceTime(500)).subscribe(v => {
+      window.localStorage.setItem("saved-login-form", JSON.stringify({ email: this.form.controls.email.value }))
+    });
+
+    this.destroy.onDestroy(() => {
+      sub.unsubscribe();
+    })
+  }
 
   invalidField(key: "email" | "password") {
     return this.form.controls[key].touched
