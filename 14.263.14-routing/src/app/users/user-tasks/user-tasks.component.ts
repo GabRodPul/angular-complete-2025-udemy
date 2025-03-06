@@ -18,7 +18,7 @@ export class UserTasksComponent implements OnInit {
 
   userName = "";
   ngOnInit(): void {
-    console.log(this.activeRoute);
+    console.log(this.activeRoute.snapshot);
     const sub = this.activeRoute.paramMap.subscribe({
       next: paramMap => {
         this.userName = this.userService.users.find(u => u.id === paramMap.get("userId"))?.name ?? "";
