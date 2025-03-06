@@ -1,11 +1,22 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 type Role = "student"
           | "teacher"
           | "employee"
           | "founder"
           | "other"
+
+const equalValues = (ctrl1: string, ctrl2: string) => {
+  return (ctrl: AbstractControl) => {
+    const v1 = ctrl.get(ctrl1)?.value;
+    const v2 = ctrl.get(ctrl2)?.value;
+  
+    return v1 === v2
+         ? null
+         : { valsNotEqual: true }
+  }
+}
 
 @Component({
   selector: 'app-signup',
@@ -35,6 +46,8 @@ export class SignupComponent {
           Validators.minLength(6),
         ],
       })
+    }, {
+      validators: [ equalValues("pwd", "confirmPwd") ]
     }),
     firstName:  new FormControl("", { validators: [ Validators.required ] }),
     lastName:   new FormControl("", { validators: [ Validators.required ] }),
