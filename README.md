@@ -2,7 +2,7 @@
 Required course for my internship at Asociación para la Cultura Furry Española.
 
 # Progress
-## 25-02-2025
+## 25-02-2025 (STARTED)
 - ### Section 1: Getting started (8/8)
 - ### Section 2: Angular Essentials - Components, Templates, Services & More (47/55)
 #### Today's summary
@@ -36,3 +36,11 @@ Deep dives for pipes, dependency injection, change detection, observables and HT
 - ### Section 14: Section 14: Routing & Building Multi-page Single Page Applications [35/35]
 #### Today's summary
 Template forms & reactive forms, all about routing.
+
+
+## 07-03-2025 (FINISHED)
+- ### Section 15: Code Splitting & Deferrable Views [11/11]
+- ### Section 16: Deploying Angular Apps - CSR, SSR, SGA [15/15]
+- ### Section 17: Course Roundup & Next Steps [4/4]
+- Today's summary
+Code splitting, deferrable views, deployment and roundup.
